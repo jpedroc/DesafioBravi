@@ -1,0 +1,12 @@
+version: '3'
+services:
+  db:
+    image: postgres
+    container_name: gtp-bd
+    environment:
+      - POSTGRES_DB=GTPBD
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_USER=postgres
+    restart: always
+    ports:
+      - '5432:5432'
