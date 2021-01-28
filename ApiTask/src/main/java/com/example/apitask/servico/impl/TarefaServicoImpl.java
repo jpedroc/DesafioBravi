@@ -44,4 +44,11 @@ public class TarefaServicoImpl implements TarefaServico {
         }
         tarefaRepositorio.delete(tarefa);
     }
+
+    @Override
+    public TarefaDTO obterPorId(Long id) {
+        TarefaDTO tarefa = tarefaMapper.toDto(tarefaRepositorio.findById(id)
+                .orElseThrow(() -> new MyException("Tarefa não encontrada")));
+        return tarefa;
+    }
 }

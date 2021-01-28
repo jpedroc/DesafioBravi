@@ -15,5 +15,6 @@ public class TarefaListagemDTO {
     private Long id;
     private String titulo;
     private LocalDate data;
+    private String status;
 
 }

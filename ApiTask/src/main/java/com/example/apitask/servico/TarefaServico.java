@@ -12,4 +12,6 @@ public interface TarefaServico {
     public TarefaListagemDTO salvar(TarefaDTO tarefaDTO);
 
     public void deletar(Long id);
+
+    public TarefaDTO obterPorId(Long id);
 }
