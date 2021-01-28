@@ -31,7 +31,7 @@ public class Tarefa {
     @Column(name = "DATA", nullable = false)
     private LocalDate data;
 
-    @Column(name = "TEMPO_GASTO", nullable = false)
+    @Column(name = "TEMPO_GASTO", nullable = true)
     private Long tempoGasto;
 
     @Column(name = "STATUS", nullable = false)

@@ -1,0 +1,43 @@
+<div class="container">
+  <form [formGroup]="formTask" class="formTask p-grid p-fluid">
+    <h2>Cadastro de Tarefa</h2>
+
+    <div class="p-field p-col-12">
+        <input type="text" formControlName="titulo" id="inputtext" placeholder="Titulo" pInputText>
+    </div>
+
+    <div class="p-field p-col-12">
+        <textarea cols="30" formControlName="descricao" placeholder="Descrição" pInputTextarea autoResize="autoResize"></textarea>
+    </div>
+
+    <div class="p-field p-col-12">
+      <p-calendar inputId="basic" formControlName="data" dateFormat="yy-mm-dd" placeholder="Data da tarefa"></p-calendar>
+      <p-dropdown [options]="status" formControlName="status" placeholder="Status"></p-dropdown>
+      <input *ngIf="isPendente()" type="number" id="tempoGasto" formControlName="tempoGasto" placeholder="Tempo Gasto" pInputText>
+    </div>
+
+    <button pButton [disabled]="!formTask.valid" (click)="validForm()" label="Salvar"></button>
+  </form>
+
+  <p-table [value]="tasks">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Titulo</th>
+        <th>Data</th>
+        <th>Status</th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-task>
+      <tr>
+        <td>{{task.titulo}}</td>
+        <td>{{task.data}}</td>
+        <td>{{task.status}}</td>
+        <td>
+          <button pButton type="button" icon="pi pi-pencil" (click)="editar(task.id)" class="p-button-raised p-button-rounded"></button>
+          <button pButton type="button" icon="pi pi-trash" (click)="deletar(task.id)" class="p-button-raised p-button-rounded"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
