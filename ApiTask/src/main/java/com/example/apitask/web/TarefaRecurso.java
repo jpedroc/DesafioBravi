@@ -20,9 +20,15 @@ public class TarefaRecurso {
     private final TarefaServico tarefaServico;
 
     @GetMapping
-    public ResponseEntity<List<TarefaListagemDTO>> listar(@PathVariable Long id) {
+    public ResponseEntity<List<TarefaListagemDTO>> listar() {
         List<TarefaListagemDTO> tarefas = tarefaServico.listar();
         return ResponseEntity.ok(tarefas);
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity<TarefaDTO> buscarPorId(@PathVariable("id") Long id) {
+        TarefaDTO tarefa = tarefaServico.obterPorId(id);
+        return ResponseEntity.ok(tarefa);
     }
 
     @PostMapping
