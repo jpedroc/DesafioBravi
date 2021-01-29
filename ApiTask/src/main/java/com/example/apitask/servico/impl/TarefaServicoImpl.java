@@ -38,7 +38,7 @@ public class TarefaServicoImpl implements TarefaServico {
 
     @Override
     public void deletar(Long id) {
-        Tarefa tarefa = tarefaRepositorio.findById(id).orElseThrow(() -> new MyException("Tarefa não encontrada"));
+        Tarefa tarefa = findById(id);
         if(tarefa.getStatus().equals(Constantes.TAREFA_CONCLUIDA)) {
             throw new MyException("Tarefas concluídas não podem ser excluídas.");
         }
@@ -47,8 +47,11 @@ public class TarefaServicoImpl implements TarefaServico {
 
     @Override
     public TarefaDTO obterPorId(Long id) {
-        TarefaDTO tarefa = tarefaMapper.toDto(tarefaRepositorio.findById(id)
-                .orElseThrow(() -> new MyException("Tarefa não encontrada")));
-        return tarefa;
+        return tarefaMapper.toDto(findById(id));
+    }
+
+    private Tarefa findById(Long id) {
+        return  tarefaRepositorio.findById(id)
+                .orElseThrow(() -> new MyException("Tarefa não encontrada"));
     }
 }

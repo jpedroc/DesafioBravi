@@ -9,13 +9,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "TAREFA")
 @Getter
 @Setter
-public class Tarefa {
+public class Tarefa implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
