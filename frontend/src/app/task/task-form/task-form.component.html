@@ -14,7 +14,7 @@
     <div class="p-field p-col-12">
       <p-calendar inputId="basic" formControlName="data" dateFormat="yy-mm-dd" placeholder="Data da tarefa"></p-calendar>
       <p-dropdown [options]="status" formControlName="status" placeholder="Status"></p-dropdown>
-      <input *ngIf="isPendente()" type="number" id="tempoGasto" formControlName="tempoGasto" placeholder="Tempo Gasto" pInputText>
+      <input *ngIf="isPendente()" type="number" id="tempoGasto" formControlName="tempoGasto" placeholder="Tempo Gasto(EM MINUTOS)" pInputText>
     </div>
 
     <button pButton [disabled]="!formTask.valid" (click)="validForm()" label="Salvar"></button>
