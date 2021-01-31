@@ -50,7 +50,7 @@ export class TaskFormComponent implements OnInit {
           this.listar();
         },
         erro => {
-          this.messageService.add({severity: "error", detail: erro.message});
+          this.messageService.add({severity: "error", detail: erro.error.message});
         }
       );
     }
@@ -61,7 +61,7 @@ export class TaskFormComponent implements OnInit {
           this.listar();
         },
         erro => {
-          this.messageService.add({severity: "error", detail: erro.message});
+          this.messageService.add({severity: "error", detail: erro.error.message});
         }
       );
     }
@@ -74,7 +74,7 @@ export class TaskFormComponent implements OnInit {
         this.tasks = response;
       },
       erro => {
-        this.messageService.add({severity: "error", detail: erro.message});
+        this.messageService.add({severity: "error", detail: erro.error.message});
       }
     );
   }
@@ -86,7 +86,7 @@ export class TaskFormComponent implements OnInit {
         this.listar();
       },
       erro => {
-        this.messageService.add({severity: "error", detail: erro.message});
+        this.messageService.add({severity: "error", detail: erro.error.message});
       }
     );
   }
@@ -104,7 +104,7 @@ export class TaskFormComponent implements OnInit {
           });
       },
       erro => {
-        this.messageService.add({severity: "error", detail: erro.message});
+        this.messageService.add({severity: "error", detail: erro.error.message});
       }
     )
   }
