@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {SelectItem} from 'primeng-lts/api';
+import {MessageService, SelectItem} from 'primeng-lts/api';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {TaskServiceService} from '../../services/task-service.service';
 import {TaskListModel} from '../../models/task-list.model';
@@ -17,7 +17,8 @@ export class TaskFormComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private taskService: TaskServiceService) { }
+    private taskService: TaskServiceService,
+    private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -45,24 +46,25 @@ export class TaskFormComponent implements OnInit {
     if(this.formTask.controls["id"].value) {
       this.taskService.editar(this.formTask.value).subscribe(
         response => {
-          alert("Editou");
+          this.messageService.add({severity: "success", detail: "Tarefa edita com sucesso"});
+          this.listar();
         },
-        () => {
-          alert("Erro");
+        erro => {
+          this.messageService.add({severity: "error", detail: erro.message});
         }
       );
     }
     else {
       this.taskService.cadastrar(this.formTask.value).subscribe(
         response => {
-          alert("Cadastrou");
+          this.messageService.add({severity: "success", detail: "Tarefa cadastrada com sucesso"});
+          this.listar();
         },
-        () => {
-          alert("Erro");
+        erro => {
+          this.messageService.add({severity: "error", detail: erro.message});
         }
       );
     }
-    this.listar();
     this.formTask.reset();
   }
 
@@ -71,8 +73,8 @@ export class TaskFormComponent implements OnInit {
       response => {
         this.tasks = response;
       },
-      () => {
-        alert("Erro ao listar");
+      erro => {
+        this.messageService.add({severity: "error", detail: erro.message});
       }
     );
   }
@@ -80,11 +82,11 @@ export class TaskFormComponent implements OnInit {
   deletar(id: number) {
     this.taskService.deletar(id).subscribe(
       response => {
-        alert("Deletou");
+        this.messageService.add({severity: "success", detail: "Tarefa deletada com sucesso"});
         this.listar();
       },
-      () => {
-        alert("Erro ao deletar");
+      erro => {
+        this.messageService.add({severity: "error", detail: erro.message});
       }
     );
   }
@@ -101,8 +103,8 @@ export class TaskFormComponent implements OnInit {
             tempoGasto: response.tempoGasto
           });
       },
-      () => {
-        alert("Erro ao obter por id");
+      erro => {
+        this.messageService.add({severity: "error", detail: erro.message});
       }
     )
   }

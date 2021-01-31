@@ -10,8 +10,9 @@ import {SharedModule} from 'primeng-lts/api';
 import {InputTextareaModule} from 'primeng-lts/inputtextarea';
 import {CalendarModule} from 'primeng-lts/calendar';
 import {DropdownModule} from 'primeng-lts/dropdown';
-import {ScrollingModule} from '@angular/cdk/scrolling';
 import {TableModule} from 'primeng-lts/table';
+import {ToastModule} from 'primeng-lts/toast';
+
 
 @NgModule({
   declarations: [TaskFormComponent],
@@ -27,7 +28,8 @@ import {TableModule} from 'primeng-lts/table';
     InputTextareaModule,
     CalendarModule,
     DropdownModule,
-    TableModule
+    TableModule,
+    ToastModule
   ]
 })
 export class TaskModule { }

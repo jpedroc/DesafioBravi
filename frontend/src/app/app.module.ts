@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import {TaskModule} from './task/task.module';
 import {TaskServiceService} from './services/task-service.service';
 import {HttpClientModule} from '@angular/common/http';
+import {MessageService} from "primeng-lts/api";
 
 @NgModule({
   declarations: [
@@ -15,7 +16,7 @@ import {HttpClientModule} from '@angular/common/http';
     TaskModule,
     HttpClientModule
   ],
-  providers: [TaskServiceService],
+  providers: [TaskServiceService, MessageService  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
